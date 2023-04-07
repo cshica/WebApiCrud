@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Threading.Tasks;
 using WebApi.Data;
+using WebApi.Models;
 
 namespace WebApi.Negocio
 {
@@ -9,6 +10,11 @@ namespace WebApi.Negocio
         public async Task<DataTable> ListarPersonas()
         {
            return await PersonaData.ListarPersonas();
+        }
+
+        public async Task<string> RegistrarPersona(Persona ent)
+        {
+            return await PersonaData.RegistrarPersona(ent);
         }
     }
 }

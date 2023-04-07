@@ -22,5 +22,13 @@ namespace WebApi.Controllers
 
             return Ok(lista.DataTableToJSON());
         }
+        [HttpPost]
+        [Route("RegistrarPersona")]
+        public async Task<IActionResult> RegistarDaos([FromBody] Persona ent )
+        {
+            var res = await Globales.ServicioWebRemoto.RegistrarPersona(ent);
+            return Ok(res);
+        }
+
     }
 }
