@@ -7,6 +7,6 @@ namespace WebApi.Negocio
     public interface IServicio
     {
         Task<DataTable> ListarPersonas();
-        Task<string> RegistrarPersona(Persona ent);
+        Task<Resultado> RegistrarPersona(Persona ent);
     }
 }

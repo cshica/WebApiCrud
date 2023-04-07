@@ -12,7 +12,7 @@ namespace WebApi.Negocio
            return await PersonaData.ListarPersonas();
         }
 
-        public async Task<string> RegistrarPersona(Persona ent)
+        public async Task<Resultado> RegistrarPersona(Persona ent)
         {
             return await PersonaData.RegistrarPersona(ent);
         }

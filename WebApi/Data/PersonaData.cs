@@ -37,9 +37,9 @@ namespace WebApi.Data
             }
         }
 
-        public static async Task<string> RegistrarPersona(Persona ent)
+        public static async Task<Resultado> RegistrarPersona(Persona ent)
         {
-            string res = string.Empty;
+            Resultado res =new Resultado();
             SqlConnection con = GlobalesData.CreateDatabase;
             await con.OpenAsync();
             try
@@ -53,13 +53,17 @@ namespace WebApi.Data
                     
                     await cmd.ExecuteNonQueryAsync();
                     await con.CloseAsync();
-                    res = "Registro Correcto";
+                    res.Mensaje = "Registro Correcto";
+                    res.Error = false;
+                    res.Obj = new object();
                 }
                return res;
             }
             catch (Exception ex)
             {
-                res =ex.Message.ToString();
+                res.Mensaje =ex.Message.ToString();
+                res.Error = true;
+                res.Obj = new object();
                 return res;
             }
         }
