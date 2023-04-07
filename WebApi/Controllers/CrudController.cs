@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using WebApi.Helpers;
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
@@ -8,13 +11,16 @@ namespace WebApi.Controllers
     {
         [HttpGet]
         [Route("getDatos")]
-        public IActionResult ListarDatos()
+        public async Task<IActionResult> ListarDatos()
         {
-            var persona = new { 
-            Nombre="Pepito",
-            Direccion="Las cinco esquinas"
-            };
-            return Ok(persona);
+            //var persona = new { 
+            //Nombre="Pepito",
+            //Direccion="Las cinco esquinas"
+            //};
+            //return Ok(persona);
+            var lista= await Globales.ServicioWebRemoto.ListarPersonas();
+
+            return Ok(lista.DataTableToJSON());
         }
     }
 }
