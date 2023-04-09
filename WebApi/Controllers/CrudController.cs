@@ -30,5 +30,21 @@ namespace WebApi.Controllers
             return Ok(res);
         }
 
+        [HttpPost]
+        [Route("EliminarPersona")]
+        public async Task<IActionResult> EliminarPersona([FromBody] Persona ent)
+        {
+            var res = await Globales.ServicioWebRemoto.EliminarPersona(ent);
+            return Ok(res);
+        }
+
+        [HttpPost]
+        [Route("ActualizarPersona")]
+        public async Task<IActionResult> ActualizarPersona([FromBody] Persona ent)
+        {
+            var res = await Globales.ServicioWebRemoto.ActualizarPersona(ent);
+            return Ok(res);
+        }
+
     }
 }

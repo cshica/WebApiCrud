@@ -8,5 +8,7 @@ namespace WebApi.Negocio
     {
         Task<DataTable> ListarPersonas();
         Task<Resultado> RegistrarPersona(Persona ent);
+        Task<Resultado> EliminarPersona(Persona ent);
+        Task<Resultado> ActualizarPersona(Persona ent);
     }
 }

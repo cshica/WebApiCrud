@@ -7,6 +7,16 @@ namespace WebApi.Negocio
 {
     public partial class Servicio : IServicio
     {
+        public async Task<Resultado> ActualizarPersona(Persona ent)
+        {
+            return await PersonaData.ActualizarPersona(ent);
+        }
+
+        public async Task<Resultado> EliminarPersona(Persona ent)
+        {
+            return await PersonaData.EliminarPersona(ent);
+        }
+
         public async Task<DataTable> ListarPersonas()
         {
            return await PersonaData.ListarPersonas();

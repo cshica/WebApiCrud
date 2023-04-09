@@ -67,5 +67,69 @@ namespace WebApi.Data
                 return res;
             }
         }
+
+        public static async Task<Resultado> EliminarPersona(Persona ent)
+        {
+            Resultado res = new Resultado();
+            SqlConnection con = GlobalesData.CreateDatabase;
+            await con.OpenAsync();
+            try
+            {
+                string consulta = "dbo.EliminarPersona";//nombre del procedimiento almacenado 
+                using (SqlCommand cmd = new SqlCommand(consulta, con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdPersona", ent.IdPersona);
+                     
+
+                    await cmd.ExecuteNonQueryAsync();
+                    await con.CloseAsync();
+                    res.Mensaje = "Eliminación Correcta";
+                    res.Error = false;
+                    res.Obj = new object();
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                res.Mensaje = ex.Message.ToString();
+                res.Error = true;
+                res.Obj = new object();
+                return res;
+            }
+        }
+
+        public static async Task<Resultado> ActualizarPersona(Persona ent)
+        {
+            Resultado res = new Resultado();
+            SqlConnection con = GlobalesData.CreateDatabase;
+            await con.OpenAsync();
+            try
+            {
+                string consulta = "dbo.ActualizarPersona";//nombre del procedimiento almacenado 
+                using (SqlCommand cmd = new SqlCommand(consulta, con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdPersona", ent.IdPersona);
+                    cmd.Parameters.AddWithValue("@Nombre", ent.Nombre);
+                    cmd.Parameters.AddWithValue("@Direccion", ent.Direccion);
+
+
+                    await cmd.ExecuteNonQueryAsync();
+                    await con.CloseAsync();
+                    res.Mensaje = "Datos actualizados";
+                    res.Error = false;
+                    res.Obj = new object();
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                res.Mensaje = ex.Message.ToString();
+                res.Error = true;
+                res.Obj = new object();
+                return res;
+            }
+        }
     }
 }
